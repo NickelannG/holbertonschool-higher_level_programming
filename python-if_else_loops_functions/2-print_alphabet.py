@@ -1,3 +1,5 @@
 #!/usr/bin/python3
 str = "abcdefghijklmnopqrstuvwxyz"
-print(str)
+for i in range(len(str)):
+    str[i]
+print(f"{str}")
