@@ -2,11 +2,11 @@
 if __name__ == "__main__":
     a = 10
     b = 5
-    added = a + b
-    subbed = a - b
-    product = a * b
-    divided = a / b
     from calculator_1 import add, sub, mul, div
+    added = add(a, b)
+    subbed = sub(a, b)
+    product = mul(a, b)
+    divided = div(a, b)
     print("{} + {} = {}".format(a, b, added))
     print("{} - {} = {}".format(a, b, subbed))
     print("{} * {} = {}".format(a, b, product))
