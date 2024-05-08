@@ -4,4 +4,4 @@ if __name__ == "__main__":
     a = 1
     b = 2
     added = add(a, b)
-    print("{a} + {b} = {added}".format(a=1, b=2, added=add(a, b)))
+    print("{} + {} = {}".format(a, b, added))
