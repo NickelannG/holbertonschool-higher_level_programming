@@ -12,8 +12,11 @@ True if value has been correctly printed, otherwise False
 
 
 def safe_print_integer(value):
-    try:
-        print("{:d}".format(int(value)))
-        return True
-    except (ValueError, TypeError):
+    if isinstance(value, int):
+        try:
+            print("{:d}".format(int(value)))
+            return True
+        except (ValueError, TypeError):
+            return False
+    else:
         return False
