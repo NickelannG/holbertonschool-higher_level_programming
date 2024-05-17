@@ -106,7 +106,7 @@ class Square:
     def my_print(self):
         """
         A method within the Square class that prints in stdout a square
-        with the # character according to size.
+        with the # character according to size and position.
         """
         if self.__size == 0:
             print()
