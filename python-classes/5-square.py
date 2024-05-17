@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 5-square.py:
-    This method contains a class Square that defines a square.
+    This module contains a class Square that defines a square.
 
 Classes:
     Square: A class that represents a square.
@@ -12,6 +12,7 @@ Methods:
     - size(setter): a method that sets the value of private attribute, size.
     - area: A method within the Sqaure class
     that calculates the area of a square.
+    - my_print: A method that prints a sqaure with the # character
 """
 
 
@@ -43,8 +44,11 @@ class Square:
     @size.setter
     def size(self, value):
         """
-        A setter method within the Sqaure class that sets the value of
+        A setter method within the Square class that sets the value of
         private attribute, size.
+
+        Parameters:
+            value: the value to set size to.
 
         Raises:
             TyperError: If value is not an integer.
@@ -58,7 +62,7 @@ class Square:
 
     def area(self):
         """
-        A method within the Sqaure class that
+        A method within the Square class that
         calculates the area of a square.
 
         Returns:
