@@ -30,6 +30,10 @@ class Square:
             - position: (tuple): a private instance attribute that has a
             starting value of (0, 0) and represents the position of
             the square.
+        
+        Raises:
+            TyperError: If position is not a tuple of 2 positive
+            integers.
         """
         self.__size = size
         if not isinstance(position, tuple) or len(position) != 2:
@@ -92,7 +96,7 @@ class Square:
             value (tuple): the value to set position to.
 
         Raises:
-            TyperError: If position is not a tuple of 2 positive
+            TyperError: If value is not a tuple of 2 positive
             integers.
         """
         if not isinstance(value, tuple) or len(value) != 2:
@@ -117,11 +121,14 @@ class Square:
         """
         A method within the Square class that prints in stdout a square
         with the # character according to size and position.
+
+        Returns:
+            nothing if the size is 0
         """
         if self.__size == 0:
             print()
             return
-        if self.__position[1] > 0:
+        for i in range(self.__position[1]):
             print()
         for i in range(self.__size):
             print(" "*self.__position[0] + "#"*self.__size)
