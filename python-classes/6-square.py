@@ -30,7 +30,7 @@ class Square:
             - position: (tuple): a private instance attribute that has a
             starting value of (0, 0) and represents the position of
             the square.
-        
+
         Raises:
             TyperError: If position is not a tuple of 2 positive
             integers.
