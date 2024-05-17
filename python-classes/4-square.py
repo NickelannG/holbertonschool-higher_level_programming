@@ -7,7 +7,10 @@ Classes:
     Sqaure: A class that represents a sqaure
 
 Methods:
-    area: a method within the Square class that represents the area if a
+    - size (getter): A method to retrieve the value of
+    private attribute, size.
+    - size (setter): A method to set the value of private attribute size.
+    - area: a method within the Square class that represents the area if a
     square.
 """
 
@@ -46,8 +49,8 @@ class Square:
             value: the value to set size to
 
         Raises:
-            TyperError: If size is not an integer.
-            ValueError: If size is a negative integer.
+            TyperError: If value is not an integer.
+            ValueError: If value is a negative integer.
         """
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
