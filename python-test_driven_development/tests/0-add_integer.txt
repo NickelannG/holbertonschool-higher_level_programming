@@ -39,7 +39,7 @@ Traceback (most recent call last):
 OverflowError: cannot convert float infinity to integer
 
 # float NaN
->>> add_integer(5, [1, 2])
+>>> add_integer(5, float('nan'))
 Traceback (most recent call last):
 ...
-TypeError: b must be an integer
+ValueError: cannot convert float NaN to integer
