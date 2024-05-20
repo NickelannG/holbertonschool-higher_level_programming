@@ -8,7 +8,7 @@ First import ``say_my_name`` from the ``3-say_my_name`` module:
 
 # Successfull:
 >>> say_my_name("John", "Smith")
-my name is John Smith
+My name is John Smith
 
 # first_name is not a string:
 >>> say_my_name(1, "Smith")
@@ -24,7 +24,7 @@ TypeError: last_name must be a string
 
 # Missing one argument:
 >>> say_my_name("Bob")
-my name is Bob 
+My name is Bob 
 
 # Missing 2 arguments
 >>> say_my_name()
