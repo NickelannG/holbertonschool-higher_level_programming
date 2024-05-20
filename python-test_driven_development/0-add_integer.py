@@ -5,7 +5,6 @@
 """
 
 
-
 def add_integer(a, b=98):
     """
     Returns a(int, float) + b(int, float).
