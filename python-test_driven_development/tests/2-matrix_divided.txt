@@ -41,7 +41,7 @@ Traceback (most recent call last):
 ...
 TypeError: div must be a number
 
-# If div is zero
+# If div is zero:
 >>> matrix = [
 ...     [1, 2, 3],
 ...     [4, 5, 6]
@@ -51,7 +51,7 @@ Traceback (most recent call last):
 ...
 ZeroDivisionError: division by zero
 
-# missing one argument
+# missing one argument:
 >>> matrix = [
 ...     [1, 2, 3],
 ...     [4, 5, 6]
@@ -61,7 +61,7 @@ Traceback (most recent call last):
 ...
 TypeError: matrix_divided() missing 1 required positional argument: 'div'
 
-# If missing 2 arguments
+# If missing 2 arguments:
 >>> matrix = [
 ...     [1, 2, 3],
 ...     [4, 5, 6]
@@ -70,3 +70,11 @@ TypeError: matrix_divided() missing 1 required positional argument: 'div'
 Traceback (most recent call last):
 ...
 TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'
+
+# If div is a floating infinity value:
+>>> matrix = [
+...     [1, 2, 3],
+...     [4, 5, 6]
+... ]
+>>> print(matrix_divided(matrix, float("inf")))
+[[0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
