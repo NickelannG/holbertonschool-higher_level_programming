@@ -39,7 +39,7 @@ def matrix_divided(matrix, div):
 
     for i in matrix:
         if len(i) != row_len:
-            raise TypeError("Each row of the matric must have the same size")
+            raise TypeError("Each row of the matrix must have the same size")
 
     for i in matrix:
         divided = [round(j / div, 2) for j in i]
