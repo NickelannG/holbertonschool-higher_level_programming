@@ -18,6 +18,7 @@ def text_indentation(text):
 
     chars = ['.', '?', ':']
     result = ""
+    newline_added = False
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
@@ -25,6 +26,12 @@ def text_indentation(text):
         result += char
         if char in chars:
             result += "\n\n"
+            newline_added = True
+        else:
+            newline_added = False
+    
+    if newline_added:
+        result = result.rstrip() + "\n"
 
     lines = result.split('\n')
     for line in lines:
