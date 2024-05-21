@@ -8,32 +8,31 @@
 def text_indentation(text):
     """
     Prints a text with 2 new lines after each of these characters ., ?, and :
-
     Parameters:
         - text (str): the text to be printed
-
     Raises:
         TypeError: If text is not a string.
     """
 
     chars = ['.', '?', ':']
     result = ""
-    newline_added = False
+    i = 0
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    for char in text:
-        result += char
-        if char in chars:
+    while i < len(text):
+        result += text[i]
+        if text[i] in chars:
             result += "\n\n"
-            newline_added = True
-        else:
-            newline_added = False
-
-    if newline_added:
-        result = result.rstrip() + "\n"
-
-    lines = result.split('\n')
-    for line in lines:
-        if line.strip():
+            i += 1
+            while i < len(text) and text[i] == " ":
+                i += 1
+            continue
+        i += 1
+    
+    if any(char in chars for char in text):
+        lines = result.split('\n')
+        for line in lines:
             print(line.strip())
+    else:
+        print(text.strip())
