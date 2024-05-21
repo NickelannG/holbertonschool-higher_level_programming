@@ -8,7 +8,7 @@
 class Rectangle:
     """
     A class used to define a rectangle.
-    
+
     This class currently doesn't have any methods or attributes.
     """
     pass
