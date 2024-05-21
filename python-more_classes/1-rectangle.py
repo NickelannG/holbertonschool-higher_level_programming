@@ -18,7 +18,7 @@ class Rectangle:
             the width of rectangle.
             - height (int): Private instance attribute that represents the
             height of rectangle.
-        
+
         Raises:
             - TypeError: if width or height is not an int
             - ValueError: if width or height is a negative int
