@@ -1,4 +1,4 @@
-#!/bin/usr/python
+#!/usr/bin/python3
 """
 1-rectangle:
     The module contains the class, Rectangle that defines a rectangle
