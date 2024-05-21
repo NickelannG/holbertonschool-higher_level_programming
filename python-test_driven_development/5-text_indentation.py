@@ -29,10 +29,11 @@ def text_indentation(text):
             newline_added = True
         else:
             newline_added = False
-    
+
     if newline_added:
         result = result.rstrip() + "\n"
 
     lines = result.split('\n')
     for line in lines:
-        print(line.strip())
+        if line.strip():
+            print(line.strip())
