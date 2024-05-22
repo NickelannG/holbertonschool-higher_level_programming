@@ -1,0 +1,9 @@
+The ``1-my_list`` module
+======================
+
+Using ``print_sorted``
+-------------------
+First import ``print_sorted`` from the ``1-my_list`` module:
+    >>> print_sorted = __import__("1-my_list").print_sorted
+
+# Successful:
