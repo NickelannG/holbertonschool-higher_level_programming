@@ -27,6 +27,8 @@ class Circle(Shape):
     Subclass that inherits from the Shape class
     """
     def __init__(self, radius):
+        if radius <= 0:
+            raise ValueError(" radius must be > 0")
         self.radius = radius
 
     def area(self):
