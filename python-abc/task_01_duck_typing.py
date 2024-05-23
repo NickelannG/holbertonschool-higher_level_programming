@@ -29,13 +29,13 @@ class Circle(Shape):
     def __init__(self, radius):
         if radius < 0:
             raise ValueError(" radius must be >= 0")
-        self.radius = radius
+        self.__radius = radius
 
     def area(self):
-        return math.pi * (self.radius ** 2)
+        return math.pi * (self.__radius ** 2)
 
     def perimeter(self):
-        return 2 * math.pi * self.radius
+        return 2 * math.pi * self.__radius
 
 
 class Rectangle(Shape):
