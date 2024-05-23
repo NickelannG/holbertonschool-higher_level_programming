@@ -63,7 +63,9 @@ TypeError: age must be an integer
 # Age value is a Boolean:
 >>> bg = BaseGeometry()
 >>> bg.integer_validator("age", True)
-
+Traceback (most recent call last):
+...
+TypeError: age must be an integer
 
 # Age value is an array:
 >>> bg = BaseGeometry()
