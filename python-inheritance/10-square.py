@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """
 10-square:
-    This module contains a base class BaseGeometry
-    and a subclass square.
+    and a subclass square that inhertis from Rectangle class .
 """
 Rectangle = __import__('9-rectangle').Rectangle
 
