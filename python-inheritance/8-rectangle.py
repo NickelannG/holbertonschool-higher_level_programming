@@ -6,7 +6,7 @@
 """
 
 
-class BaseGeometry:
+class BaseGeometry():
     """
     Base class
 
