@@ -2,6 +2,7 @@
 """
 8-rectangle:
     This module contains a base class BaseGeometry
+    and a subclass Rectangle.
 """
 
 
