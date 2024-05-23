@@ -45,6 +45,12 @@ Traceback (most recent call last):
 ...
 ValueError: age must be greater than 0
 
+#Age value is a string:
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("age", "4")
+Traceback (most recent call last):
+...
+TypeError: age must be an integer
 
 # Age value is a tuple:
 >>> bg = BaseGeometry()
