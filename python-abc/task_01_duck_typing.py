@@ -28,8 +28,19 @@ class Circle(Shape):
     """
     def __init__(self, radius):
         if radius < 0:
-            raise ValueError(" radius must be >= 0")
+            radius = abs(radius)
+            # raise ValueError("radius must be >= 0")
         self.__radius = radius
+
+    @property
+    def radius(self):
+        return self.__radius
+
+    @radius.setter
+    def radius(self, value):
+        if value < 0:
+            self.__radius = abs(value)
+            # raise ValueError("radius must be >= 0")
 
     def area(self):
         return math.pi * (self.__radius ** 2)
