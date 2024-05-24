@@ -29,7 +29,7 @@ class VerboseList(list):
 
     def pop(self, idx=None):
         if idx is None:
-            idx = len(self) - 1
+            idx = len(self) - 1  # Last item in list
         item = super().pop(idx)
         print(f"Popped [{item}] from the list.")
         return (item)
