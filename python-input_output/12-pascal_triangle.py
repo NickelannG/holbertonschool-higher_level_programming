@@ -12,6 +12,9 @@ def pascal_triangle(n):
 
     Args:
         - n (int): the number of rows in the triangle.
+    
+    Returns:
+        - The appended triangle list according to n.
     """
     triangle = []
     if n <= 0:
