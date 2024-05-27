@@ -10,7 +10,7 @@ def to_json_string(my_obj):
     """
     This function returns the JSON representation of an object (string).
 
-    Args:
+    Parameters:
         - my_obj: The python object to be converted
 
     Returns:
