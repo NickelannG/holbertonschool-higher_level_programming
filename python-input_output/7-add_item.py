@@ -11,8 +11,12 @@ save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
 load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
 
 
-args = sys.argv[1:]
-objects = load_from_json_file("add_item.json")
+args = sys.argv[1:]  # command line args without the filenmame
+try:
+    objects = load_from_json_file("add_item.json")
+except FileNotFoundError:
+    objects = []  # empty list
+
 objects.extend(args)
 
 save_to_json_file(objects, "add_item.json")
