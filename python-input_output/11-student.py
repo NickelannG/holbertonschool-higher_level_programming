@@ -40,7 +40,7 @@ class Student:
         Args:
             - json: the dictionary to replace the attributes
         """
-        if json is not None:
+        if json:
             self.first_name = json["first_name"]
             self.last_name = json["last_name"]
             self.age = json["age"]
