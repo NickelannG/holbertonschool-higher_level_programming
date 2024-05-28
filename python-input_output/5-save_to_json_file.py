@@ -22,9 +22,9 @@ def save_to_json_file(my_obj, filename):
 
     except TypeError as e:
         if isinstance(my_obj, set):
-            print(f"[TypeError] Sets are not JSON serializable")
+            print(f"[TypeError] Sets are not JSON serializable", end="")
         else:
-            print(f"[{e.__class__.__name__}] {e}")
+            print(f"[{e.__class__.__name__}] {e}", end="")
 
     except PermissionError as e:
         print(f"[{e.__class__.__name__}] {e}")
