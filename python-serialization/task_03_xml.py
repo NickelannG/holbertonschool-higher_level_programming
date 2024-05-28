@@ -17,8 +17,9 @@ def serialize_to_xml(dictionary, filename):
         converted dictionary.
     """
     root = ET.Element("data")
-    for key in dictionary.keys():
-        dictionary[key] = ET.SubElement(root, key)  # Creating child elements
+    for key, value in dictionary.items():
+        child = ET.SubElement(root, key)  # Creating child elements
+        child.text = str(value)
 
     tree = ET.ElementTree(root)  # Creating ElementTree object
 
