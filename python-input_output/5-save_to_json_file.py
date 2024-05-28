@@ -9,13 +9,20 @@ import json
 def save_to_json_file(my_obj, filename):
     """
     This function writes an object to a text file,
-    using a JSON repreentation.
+    using a JSON representation.
 
     Parameters:
-        - my_obj: the object to convert to JSON string.
-        - filename: the name of the file to open or create
+        - my_obj: The object to convert to JSON string.
+        - filename: The name of the file to open or create.
     """
-    json_string = json.dumps(my_obj)
+    try:
+        if isinstance(my_obj, set):
+            my_obj = list(my_obj)
 
-    with open(filename, "w", encoding="utf-8") as f:
-        f.write(json_string)
+        json_string = json.dumps(my_obj)
+
+        with open(filename, "w", encoding="utf-8") as f:
+            f.write(json_string)
+
+    except PermissionError as e:
+        print(f"[{e.__class__.__name__}] {e}")
