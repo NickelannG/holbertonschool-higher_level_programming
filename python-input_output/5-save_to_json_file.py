@@ -20,8 +20,9 @@ def save_to_json_file(my_obj, filename):
         with open(filename, "w", encoding="utf-8") as f:
             f.write(json_string)
 
-    except TypeError:
-        print(f"[TypeError] Object of type {type(my_obj).__name__} is not JSON serializable")
+    except TypeError as e:
+        print(f"[TypeError] Object of type {type(my_obj).__name__} is not "
+              "JSON serializable")
 
     except PermissionError as e:
         print(f"[PermissionError] {e}")
