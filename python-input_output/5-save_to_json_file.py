@@ -21,7 +21,7 @@ def save_to_json_file(my_obj, filename):
             f.write(json_string)
 
     except TypeError:
-        print(f"[PermissionError] [Errno 13] Permission denied: '{filename}'")
+        print(f"[TypeError] Object of type {type(my_obj).__name__} is not JSON serializable")
 
     except PermissionError as e:
         print(f"[PermissionError] {e}")
