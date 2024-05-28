@@ -18,7 +18,7 @@ def convert_csv_to_json(csvFilePath):
         - True if the conversion was successful, otherwise False.
     """
     try:
-        data = {}
+        data = []
         with open(csvFilePath) as csvf:
             csvreader = csv.DictReader(csvf)
 
@@ -26,7 +26,7 @@ def convert_csv_to_json(csvFilePath):
                 data.append(row)
 
         with open("data.json" "w") as jsonf:
-            json.write(json.dumps(data))
+            jsonf.write(json.dumps(data))
 
         return True
 
