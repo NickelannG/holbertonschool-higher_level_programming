@@ -28,7 +28,7 @@ def convert_csv_to_json(csvFilePath):
         with open("data.json" "w") as jsonf:
             jsonf.write(json.dumps(data))
 
-        return True
-
     except FileNotFoundError:
         return False
+    
+    return True
