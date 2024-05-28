@@ -1,8 +1,22 @@
 #!/usr/bin/python3
+"""
+task_01_pickle:
+    This module contains the CustomObject class
+"""
 import pickle
 
 
 class CustomObject:
+    """
+    This class defines a custom object
+
+    Methods:
+        - display: prints the object's attributes
+        - serialize: serializes the current instance of the
+        object using pickle.
+        - deserialize: Class method that deserializes the current
+        instance.
+    """
     def __init__(self, name, age, is_student):
         self.name = name
         self.age = age
