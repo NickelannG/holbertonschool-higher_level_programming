@@ -25,7 +25,7 @@ def convert_csv_to_json(csvFilePath):
             for row in csvreader:
                 data.append(row)
 
-        with open("data.json" "w") as jsonf:
+        with open("data.json", "w") as jsonf:
             json.dump(data, jsonf)
 
         return True
