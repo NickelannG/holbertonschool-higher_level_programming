@@ -20,8 +20,8 @@ def save_to_json_file(my_obj, filename):
         with open(filename, "w", encoding="utf-8") as f:
             f.write(json_string)
 
-    except TypeError as e:
-        print(f"[PermissionError] {e}")
+    except TypeError:
+        print(f"[PermissionError] [Errno 13] Permission denied: '{filename}'")
 
     except PermissionError as e:
         print(f"[PermissionError] {e}")
