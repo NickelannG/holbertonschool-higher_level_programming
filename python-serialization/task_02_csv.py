@@ -19,7 +19,7 @@ def convert_csv_to_json(csvFilePath):
     """
     try:
         data = []
-        with open(csvFilePath) as csvf:
+        with open(csvFilePath, "r") as csvf:
             csvreader = csv.DictReader(csvf)
 
             for row in csvreader:
