@@ -30,5 +30,5 @@ def convert_csv_to_json(csvFilePath):
 
     except FileNotFoundError:
         return False
-    
+
     return True
