@@ -34,8 +34,6 @@ def status():
 def users_username(username):
     # Getting whole object(value) that corresponds with username(key)
     whole_obj = users.get(username)
-    if whole_obj is None:
-        return jsonify({"error": "User not found"}), 404
     return jsonify(whole_obj)
 
 
@@ -43,8 +41,6 @@ def users_username(username):
 def add_user():
     data = request.get_json()  # Get incoming JSON data
     username = data.get('username')  # Parse through incoming JSON data
-    if username in users:
-        return jsonify({"error": "Username already exsists"}), 400
     users[username] = {
         "name": data.get("name"),
         "age": data.get("age"),
