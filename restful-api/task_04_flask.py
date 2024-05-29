@@ -46,7 +46,7 @@ def add_user():
         "age": data.get("age"),
         "city": data.get("city")
         }  # Add to users dictionary
-    return jsonify(users[username])  # Confirmation message
+    return jsonify({"message": "User added", "user": users[username]})  # Confirmation message
 
 
 if __name__ == "__main__":
