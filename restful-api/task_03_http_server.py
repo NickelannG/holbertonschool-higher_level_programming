@@ -51,7 +51,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-type", "application/json")
             self.end_headers()
-            self.wfile.write(bytes(json, "utf-8"))
+            self.wfile.write(bytes(json_info, "utf-8"))
 
         else:
             response = "Endpoint not found"
@@ -60,6 +60,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.send_header("Content-type", "text/html")
             self.end_headers()
             self.wfile.write(bytes(response, "utf-8"))
+            return False
 
 
 server = HTTPServer((HOST, PORT), RequestHandler)
