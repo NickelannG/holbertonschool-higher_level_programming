@@ -49,9 +49,9 @@ class RequestHandler(BaseHTTPRequestHandler):
             json_info = json.dumps(info)
 
             self.send_response(200)
-            self.send_header("Content-type", "text/html")
+            self.send_header("Content-type", "application/json")
             self.end_headers()
-            self.wfile.write(bytes(json_info, "utf-8"))
+            self.wfile.write(bytes(json, "utf-8"))
 
         else:
             response = "404 Page Not Found"
