@@ -57,11 +57,11 @@ class RequestHandler(BaseHTTPRequestHandler):
             response = "Endpoint not found"
 
             self.send_response(404)
-            self.send_header("Content-type", "text/html")
+            self.send_header("Content-type", "text/plain")
             self.end_headers()
             self.wfile.write(bytes(response, "utf-8"))
-            return False
 
-
-server = HTTPServer((HOST, PORT), RequestHandler)
-server.serve_forever()
+if __name__ == "__main__":
+    server = HTTPServer((HOST, PORT), RequestHandler)
+    print(f"Server running on {HOST}:{PORT}")
+    server.serve_forever()
