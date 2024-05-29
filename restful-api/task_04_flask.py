@@ -11,7 +11,8 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 # Example dictionary: username(key) whole object(value)
-users = {"jane": {"username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"}}
+# users = {"jane": {"username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"}}
+users = {}
 
 
 @app.route("/")
@@ -42,7 +43,7 @@ def add_user():
     data = request.get_json()  # Get incoming JSON data
     username = data.get('username')  # Parse through incoming JSON data
     users[username] = {
-        "username": username,
+        "username": data.get("username"),
         "name": data.get("name"),
         "age": data.get("age"),
         "city": data.get("city")
