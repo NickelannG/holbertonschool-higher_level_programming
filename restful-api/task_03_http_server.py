@@ -40,18 +40,18 @@ class RequestHandler(BaseHTTPRequestHandler):
             response = "OK"
 
             self.send_response(200)
-            self.send_header("Content-type", "plain/text")
+            self.send_header("Content-type", "text/plain")
             self.end_headers()
             self.wfile.write(response.encode())
 
-       # elif self.path == '/info':
-          #  info = {"version": "1.0", "description": "A simple API built with http.server"}
-          #  json_info = json.dumps(info)
+        elif self.path == '/info':
+            info = {"version": "1.0", "description": "A simple API built with http.server"}
+            json_info = json.dumps(info)
 
-          #  self.send_response(200)
-          #  self.send_header("Content-type", "application/json")
-          #  self.end_headers()
-          #  self.wfile.write(bytes(json_info, "utf-8"))
+            self.send_response(200)
+            self.send_header("Content-type", "application/json")
+            self.end_headers()
+            self.wfile.write(bytes(json_info, "utf-8"))
 
         else:
             response = "Endpoint not found"
