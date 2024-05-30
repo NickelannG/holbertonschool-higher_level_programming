@@ -36,7 +36,7 @@ class WebRequestHandler(BaseHTTPRequestHandler):
 
             self.wfile.write("OK".encode())
         else:
-            # Step 4
+
             self.send_response(404)
             self.send_header("Content-Type", "text/plain")
             self.end_headers()
