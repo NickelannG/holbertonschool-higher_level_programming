@@ -15,13 +15,6 @@ def save_to_json_file(my_obj, filename):
         - my_obj: The object to convert to JSON string.
         - filename: The name of the file to open or create.
     """
-    try:
-        json_string = json.dumps(my_obj)
-        with open(filename, "w", encoding="utf-8") as f:
-            f.write(json_string)
-
-    except PermissionError as e:
-        print(f"[PermissionError] {e}")
-
-    except TypeError as e:
-        print(f"[TypeError] {e}")
+    json_string = json.dumps(my_obj)
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(json_string)
