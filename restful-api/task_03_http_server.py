@@ -1,67 +1,60 @@
 #!/usr/bin/python3
-"""
-task_03_http_server:
-    This module creates a simple HTTP server.
-"""
-from http.server import BaseHTTPRequestHandler, HTTPServer
+""" Nameless module for Task 3 """
+
+
 import json
+from http.server import BaseHTTPRequestHandler
+from http.server import HTTPServer
 
+class WebRequestHandler(BaseHTTPRequestHandler):
 
-HOST = "localhost"
-PORT = 8000
-
-
-class RequestHandler(BaseHTTPRequestHandler):
-    """
-    This class handles the HTTP requests
-    """
     def do_GET(self):
-        """
-        GET requests
-        """
+        # self.wfile.write(self.get_response().encode("utf-8"))
         if self.path == '/':
-            response = "Hello, this is a simple API!"
-
+            # Step 1
             self.send_response(200)
-            self.send_header("Content-type", "text/plain")
+            self.send_header("Content-Type", "text/plain")
             self.end_headers()
-            self.wfile.write(response.encode())
 
+            # self.wfile.write(bytes("Hello, this is a simple API!\n", 'UTF-8'))
+            self.wfile.write("Hello, this is a simple API!".encode())
         elif self.path == '/data':
-            data = {"name": "John", "age": 30, "city": "New York"}
-            json_data = json.dumps(data)
-
+            # Step 2
             self.send_response(200)
-            self.send_header("Content-type", "application/json")
+            self.send_header("Content-Type", "application/json")
             self.end_headers()
-            self.wfile.write(bytes(json_data, "utf-8"))
 
+            d = json.dumps({"name": "John", "age": 30, "city": "New York"})
+            self.wfile.write(bytes(d, 'UTF-8'))
         elif self.path == '/status':
-            response = "OK"
-
+            # Step 3
             self.send_response(200)
-            self.send_header("Content-type", "text/plain")
+            self.send_header("Content-Type", "plain/text")
             self.end_headers()
-            self.wfile.write(response.encode())
 
-        elif self.path == '/info':
-            info = {"version": "1.0", "description": "A simple API built with http.server"}
-            json_info = json.dumps(info)
+            self.wfile.write("OK".encode())
+        # elif self.path == '/info':
+        #     # Step 3
+        #     self.send_response(200)
+        #     self.send_header("Content-Type", "application/json")
+        #     self.end_headers()
 
-            self.send_response(200)
-            self.send_header("Content-type", "application/json")
-            self.end_headers()
-            self.wfile.write(bytes(json_info, "utf-8"))
-
+        #     d = json.dumps({"version": "1.0", "description": "A simple API built with http.server"})
+        #     self.wfile.write(bytes(d, 'UTF-8'))
         else:
-            response = "Endpoint not found"
-
+            # Step 4
             self.send_response(404)
-            self.send_header("Content-type", "text/plain")
+            self.send_header("Content-Type", "text/plain")
             self.end_headers()
-            self.wfile.write(response.encode())
+
+            # self.wfile.write(bytes("404 Not Found", 'UTF-8'))
+            self.wfile.write("404 Not Found".encode())
+
+    # def do_POST(self):
+    #     self.do_GET()
+
 
 if __name__ == "__main__":
-    server = HTTPServer((HOST, PORT), RequestHandler)
-    print(f"Server running on {HOST}:{PORT}")
+    server = HTTPServer(("localhost", 8000), WebRequestHandler)
+    print("Web server started at localhost:8000")
     server.serve_forever()
