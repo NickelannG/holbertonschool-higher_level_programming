@@ -23,9 +23,9 @@ class RequestHandler(BaseHTTPRequestHandler):
             response = "Hello, this is a simple API!"
 
             self.send_response(200)
-            self.send_header("Content-type", "text/html")
+            self.send_header("Content-type", "text/plain")
             self.end_headers()
-            self.wfile.write(bytes(response, "utf-8"))
+            self.wfile.write(response.encode())
 
         elif self.path == '/data':
             data = {"name": "John", "age": 30, "city": "New York"}
@@ -40,18 +40,18 @@ class RequestHandler(BaseHTTPRequestHandler):
             response = "OK"
 
             self.send_response(200)
-            self.send_header("Content-type", "text/html")
+            self.send_header("Content-type", "plain/text")
             self.end_headers()
-            self.wfile.write(bytes(response, "utf-8"))
+            self.wfile.write(response.encode())
 
-        elif self.path == '/info':
-            info = {"version": "1.0", "description": "A simple API built with http.server"}
-            json_info = json.dumps(info)
+       # elif self.path == '/info':
+          #  info = {"version": "1.0", "description": "A simple API built with http.server"}
+          #  json_info = json.dumps(info)
 
-            self.send_response(200)
-            self.send_header("Content-type", "application/json")
-            self.end_headers()
-            self.wfile.write(bytes(json_info, "utf-8"))
+          #  self.send_response(200)
+          #  self.send_header("Content-type", "application/json")
+          #  self.end_headers()
+          #  self.wfile.write(bytes(json_info, "utf-8"))
 
         else:
             response = "Endpoint not found"
@@ -59,7 +59,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.send_response(404)
             self.send_header("Content-type", "text/plain")
             self.end_headers()
-            self.wfile.write(bytes(response, "utf-8"))
+            self.wfile.write(response.encode())
 
 if __name__ == "__main__":
     server = HTTPServer((HOST, PORT), RequestHandler)
