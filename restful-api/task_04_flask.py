@@ -5,7 +5,9 @@ task_04_flask:
     It creates a Flask server and handles routes to respond to different
     endpoints.
 """
-from flask import Flask, jsonify, request
+
+from flask import Flask, jsonify, request, abort
+
 
 app = Flask(__name__)
 
@@ -13,52 +15,55 @@ users = {}
 
 @app.route("/")
 def home():
+    """ Prints welcome string """
     return "Welcome to the Flask API!"
 
 @app.route("/data")
 def data():
-    # List of all the usernames
-    usernames = list(users.keys())
-    return jsonify(usernames)
+    """ Returns JSON data """
+    return jsonify(list(users.keys()))
 
 @app.route("/status")
 def status():
-    # Return OK status
+    """ Prints OK """
     return "OK"
 
 @app.route("/users/<username>")
-def users_username(username):
-    # Getting whole object(value) that corresponds with username(key)
-    whole_obj = users.get(username)
-    if whole_obj:
-        return jsonify(whole_obj)
-    else:
-        # Return error message if user not found
+def users_specific(username):
+    """ Get specified """
+    if username not in users:
         return jsonify({"error": "User not found"}), 404
 
-@app.route("/add_user", methods=['POST'])
+    output = users[username]
+    output["username"] = username
+
+    return jsonify(output)
+
+@app.route("/add_user", methods=["POST"])
 def add_user():
-    # Get incoming JSON data
-    data = request.get_json()
-    # Parse through incoming JSON data
-    username = data.get('username')
-    if username is None:
-        # Return error message if username is missing
+    """ adds a new user to the dict """
+    if request.get_json() is None:
+        abort(400, "Not a JSON")
+
+    req_data = request.get_json()
+
+    if "username" not in req_data:
         return jsonify({"error": "Username is required"}), 400
 
-    if username in users:
-        # Return error message if username already exists
-        return jsonify({"error": "Username already exists"}), 400
-
-    # Add new user to the users dictionary
-    users[username] = {
-        "username": username,
-        "name": data.get("name"),
-        "age": data.get("age"),
-        "city": data.get("city")
+    users[req_data["username"]] = {
+        "name": req_data["name"],
+        "age": req_data["age"],
+        "city": req_data["city"]
     }
-    # Return confirmation message
-    return jsonify({"message": "User added", "user": users[username]}), 201
+
+    output = {
+        "username": req_data["username"],
+        "name": req_data["name"],
+        "age": req_data["age"],
+        "city": req_data["city"]
+    }
+    return jsonify({"message": "User added", "user": output}), 201
+
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='localhost', port=5000, debug=True)
