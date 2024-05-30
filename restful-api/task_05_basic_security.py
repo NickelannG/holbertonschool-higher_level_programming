@@ -11,16 +11,16 @@ app.config['JWT_SECRET_KEY'] = 'My_dog_Griff_is_cute'
 jwt = JWTManager(app)
 
 users = {
-    "Nicole": {
-        "username": "Nicole",
-        "password": generate_password_hash("dog"),
-        "role": "admin"
-    },
-    "Griffin": {
-        "username": "Griffin",
-        "password": generate_password_hash("treat"),
-        "role": "moderator"
-    }
+      "user1": {
+          "username": "user1", 
+          "password": "<hashed_password>", 
+          "role": "user"
+          },
+          "admin1": {
+              "username": "admin1",
+              "password": "<hashed_password>",
+              "role": "admin"
+        }
 }
 
 @auth.verify_password
@@ -61,6 +61,13 @@ def basic_protected():
 def jwt_protected():
     return "JWT Auth: Access Granted"
 
+@app.route('/users-only', methods=["GET"])
+def moderators_only():
+    current_user = get_jwt_identity()
+    if current_user['role'] != 'user':
+        return jsonify({"msg": "Users only!"}), 403
+    return "User Access: Granted".format(current_user['username'])
+
 
 @app.route('/admin-only', methods=["GET"])
 def admins_only():
@@ -68,14 +75,6 @@ def admins_only():
     if current_user['role'] != 'admin':
         return jsonify({"msg": "Admins only!"}), 403
     return "Admin Access: Granted".format(current_user['username'])
-
-
-@app.route('/moderator-only', methods=["GET"])
-def moderators_only():
-    current_user = get_jwt_identity()
-    if current_user['role'] != 'moderator':
-        return jsonify({"msg": "Moderators only!"}), 403
-    return "Moderator Access: Granted".format(current_user['username'])
 
 
 # Error handlers for JWT
