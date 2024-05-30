@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-""" Nameless module for Task 3 """
+"""
+task_03_http_server:
+    This module creates a simple HTTP server.
+"""
 
 
 import json
@@ -9,7 +12,9 @@ from http.server import HTTPServer
 class WebRequestHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
-        # self.wfile.write(self.get_response().encode("utf-8"))
+        """
+        This class handles the HTTP requests
+        """
         if self.path == '/':
             # Step 1
             self.send_response(200)
