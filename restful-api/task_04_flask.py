@@ -7,49 +7,58 @@ task_04_flask:
 """
 from flask import Flask, jsonify, request
 
-
 app = Flask(__name__)
 
-# Example dictionary: username(key) whole object(value)
-# users = {"jane": {"username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"}}
 users = {}
-
 
 @app.route("/")
 def home():
     return "Welcome to the Flask API!"
 
-
 @app.route("/data")
 def data():
-    usernames = list(users.keys())  # List of all the usernames
+    # List of all the usernames
+    usernames = list(users.keys())
     return jsonify(usernames)
-
 
 @app.route("/status")
 def status():
+    # Return OK status
     return "OK"
-
 
 @app.route("/users/<username>")
 def users_username(username):
     # Getting whole object(value) that corresponds with username(key)
     whole_obj = users.get(username)
-    return jsonify(whole_obj)
-
+    if whole_obj:
+        return jsonify(whole_obj)
+    else:
+        # Return error message if user not found
+        return jsonify({"error": "User not found"}), 404
 
 @app.route("/add_user", methods=['POST'])
 def add_user():
-    data = request.get_json()  # Get incoming JSON data
-    username = data.get('username')  # Parse through incoming JSON data
+    # Get incoming JSON data
+    data = request.get_json()
+    # Parse through incoming JSON data
+    username = data.get('username')
+    if username is None:
+        # Return error message if username is missing
+        return jsonify({"error": "Username is required"}), 400
+
+    if username in users:
+        # Return error message if username already exists
+        return jsonify({"error": "Username already exists"}), 400
+
+    # Add new user to the users dictionary
     users[username] = {
-        "username": data.get("username"),
+        "username": username,
         "name": data.get("name"),
         "age": data.get("age"),
         "city": data.get("city")
-        }  # Add to users dictionary
-    return jsonify({"message": "User added", "user": users[username]})  # Confirmation message
-
+    }
+    # Return confirmation message
+    return jsonify({"message": "User added", "user": users[username]}), 201
 
 if __name__ == "__main__":
     app.run(debug=True)
