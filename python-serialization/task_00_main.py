@@ -1,4 +1,4 @@
-#/usr/bin/env python3
+#!/usr/bin/env python3
 load_and_deserialize = __import__('task_00_basic_serialization').load_and_deserialize
 serialize_and_save_to_file = __import__('task_00_basic_serialization').serialize_and_save_to_file
 

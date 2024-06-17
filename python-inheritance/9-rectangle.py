@@ -8,7 +8,8 @@ BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 
 class Rectangle(BaseGeometry):
-    """BaseGeometry Class.
+    """
+    Subclass of BaseGeometry Class.
     """
 
     def __init__(self, width, height):

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 10-square:
-    and a subclass square that inhertis from Rectangle class .
+    and a subclass square that inhertis from Rectangle class.
 """
 Rectangle = __import__('9-rectangle').Rectangle
 
