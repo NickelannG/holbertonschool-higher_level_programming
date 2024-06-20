@@ -25,7 +25,7 @@ if __name__ == "__main__":
     query = "SELECT GROUP_CONCAT(name ORDER BY name ASC SEPARATOR ', ') " + \
             "FROM (" + \
             "SELECT cities.name FROM cities " +\
-            "LEFT JOIN states ON cities.state_id = states.id " + \
+            "INNER JOIN states ON cities.state_id = states.id " + \
             "WHERE BINARY states.name = %s " + \
             ") AS city_names;"
 
