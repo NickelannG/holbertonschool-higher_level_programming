@@ -15,6 +15,10 @@ if __name__ == "__main__":
         passwd=sys.argv[2],
         db=sys.argv[3]
     )
+    
+    for av in sys.argv:
+        if av.count(";") > 0:
+            exit()
 
     cur = db.cursor()
     state = sys.argv[4]
