@@ -15,21 +15,21 @@ if __name__ == "__main__":
         passwd=sys.argv[2],
         db=sys.argv[3]
     )
-    
-    for av in sys.argv:
-        if av.count(";") > 0:
-            exit()
 
     cur = db.cursor()
     state = sys.argv[4]
-    query = "SELECT GROUP_CONCAT(name ORDER BY name ASC SEPARATOR ', ') " + \
-            "FROM (" + \
-            "SELECT cities.name FROM cities " +\
-            "INNER JOIN states ON cities.state_id = states.id " + \
+    query = "SELECT cities.name FROM cities " + \
+        "INNER JOIN states ON cities.state_id = states.id " + \
             "WHERE BINARY states.name = %s " + \
-            ") AS city_names;"
+            "ORDER BY cities.id ASC;"
 
     cur.execute(query, (state,))
 
-    for row in cur.fetchall():
-        print(row[0])
+    i = 0
+    cities = cur.fetchall()
+    for row in cities:
+        i += 1
+        if i < len(cities):
+            print(row[0] + ", ", end="")
+        else:
+            print(row[0])
