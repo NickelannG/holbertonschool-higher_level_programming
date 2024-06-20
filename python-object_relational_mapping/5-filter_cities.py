@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
     cur = db.cursor()
     state = sys.argv[4]
-    query = "SELECT cities.name FROM cities " + \
+    query = "SELECT cities.id, cities.name, states.id FROM cities " + \
         "INNER JOIN states ON cities.state_id = states.id " + \
             "WHERE BINARY states.name = %s " + \
             "ORDER BY cities.id ASC;"
@@ -29,7 +29,7 @@ if __name__ == "__main__":
     cities = cur.fetchall()
     for row in cities:
         print("{0}".format(row[1]), end="")
-        i = i + 1
-        if i != len(rows):
+        i += 1
+        if i != len(cities):
             print(", ", end="")
     print("")
