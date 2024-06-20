@@ -18,18 +18,14 @@ if __name__ == "__main__":
 
     cur = db.cursor()
     state = sys.argv[4]
-    query = "SELECT cities.name FROM cities " + \
-        "LEFT JOIN states ON cities.state_id = states.id " + \
+    query = "SELECT GROUP_CONCAT(name ORDER BY name ASC SEPARATOR ', ') " + \
+            "FROM (" + \
+            "SELECT cities.name FROM cities " +\
+            "LEFT JOIN states ON cities.state_id = states.id " + \
             "WHERE BINARY states.name = %s " + \
-            "ORDER BY cities.id ASC;"
+            ") AS city_names;"
 
     cur.execute(query, (state,))
 
-    i = 0
-    cities = cur.fetchall()
-    for row in cities:
-        i += 1
-        if i < len(cities):
-            print(row[0] + ", ", end="")
-        else:
-            print(row[0])
+    for row in cur.fetchall():
+        print(row[0])
