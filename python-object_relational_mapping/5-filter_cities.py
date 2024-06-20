@@ -28,8 +28,8 @@ if __name__ == "__main__":
     i = 0
     cities = cur.fetchall()
     for row in cities:
-        i += 1
-        if i < len(cities):
-            print(row[0] + ", ", end="")
-        else:
-            print(row[0])
+        print("{0}".format(row[1]), end="")
+        i = i + 1
+        if i != len(rows):
+            print(", ", end="")
+    print("")
