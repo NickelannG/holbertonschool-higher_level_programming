@@ -25,6 +25,11 @@ if __name__ == "__main__":
 
     cur.execute(query, (state,))
 
-    for row in cur.fetchall():
-        print(row[0] + ", ", end="")
-    print()
+    i = 0
+    cities = cur.fetchall()
+    for row in cities:
+        i += 1
+        if i < len(cities):
+            print(row[0] + ", ", end="")
+        else:
+            print(row[0])
