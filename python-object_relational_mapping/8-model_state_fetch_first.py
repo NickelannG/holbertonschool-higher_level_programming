@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Lists all the objects in the State table within the
+"""Lists the first object in the State table within the
 hbtn_0e_6_usa database using SQLalchemy.
 """
 
