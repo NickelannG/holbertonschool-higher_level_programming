@@ -17,10 +17,9 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states = session.query(State)
-
-    i = 0
-    for row in states:
-        i += 1
-        if i == 1:
-            print("{}: {}".format(row.id, row.name))
+    # If table empty
+    if session.query(State).count() == 0:
+        print("Nothing")
+    else:
+        first_row = session.query(State).first()
+        print("{}: {}".format(first_row.id, first_row.name))
