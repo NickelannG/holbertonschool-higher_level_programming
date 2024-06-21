@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     states = session.query(State).where(State.name == arg_name)
 
-    # If state name arg doesnt exist
+    # If state name arg doesnt exist in states table
     if states.count() == 0:
         print("Not found")
     else:
