@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% include 'header.html' %}
+    <h1>Products</h1>
+    <div class ="main">
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for row in data %}
+          <tr>
+            <td>{{row["id"]}}</td>
+            <td>{{row["name"]}}</td>
+            <td>{{row["category"]}}</td>
+            <td>{{row["price"]}}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        {% if source not in ['json', 'csv'] %}
+        <h2>Wrong source</h2>
+        {% endif %}
+    </div>
+    {% include 'footer.html' %}
+</body>
+</html>
