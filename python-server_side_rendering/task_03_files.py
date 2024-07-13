@@ -35,8 +35,8 @@ def products():
 
     return render_template('product_display.html', data=data, source=source, id=id)
 
-def load_json_data(filename, wanted_id=None):
-    """ Load JSON data from file and return as a list of dictionaries """
+def load_json_data(filename, wanted_id = None):
+    """ Load JSON data from file and returns as dictionary """
 
     data = []
 
@@ -45,19 +45,20 @@ def load_json_data(filename, wanted_id=None):
 
     try:
         with open(filename, 'r') as f:
-            products = json.load(f)
+            rows = json.load(f)
 
-        found = False
-        for product in products:
-            if str(product['id']) == str(wanted_id):
+        for row in rows:
+            # Typecast!!!!!!!
+            key = str(row['id'])
+
+            if (wanted_id is not None and key == wanted_id) or (wanted_id is None):
+                product = {}
+                for k,v in row.items():
+                    product[k] = v
                 data.append(product)
-                found = True
-
-        if wanted_id and not found:
-            raise ValueError("Product with id '{}' not found in JSON source".format(wanted_id))
 
     except ValueError as exc:
-        raise ValueError("Unable to load data from file '{}': {}".format(filename, str(exc)))
+        raise ValueError("Unable to load data from file '{}'".format(filename)) from exc
 
     return data
 
