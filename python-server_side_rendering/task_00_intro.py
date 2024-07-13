@@ -42,17 +42,27 @@ def generate_invitations(template, attendees):
         processed_template = template
 
         # Replace placeholders in the template
-        for key, value in attendee.items():
-            if value is None:
-                value = "N/A"
-            processed_template = processed_template.replace("{" + key + "}", str(value))
+        for key in ["name", "event_title", "event_date", "event_location"]:
+            value = ""
+            to_replace = "{" + key + "}"
 
-        output_file = "output_{}.txt".format(i)
-        try:
-            with open(output_file, 'w') as f:
-                f.write(processed_template)
-        except IOError:
-            logging.error("Failed to write to {}".format(output_file))
+        if key not in attendee:
+                value = "N/A"
+            else:
+                value = attendee[key]
+
+            if value == "" or value is None:
+                value = "N/A"
+
+        processed_template = processed_template.replace(to_replace, value)
 
         # Increment index counter
         i += 1
+
+        output_file = "output_{}.txt".format(i)
+        # Write to output file
+        try: 
+            with open(output_file, 'w') as f:
+                    f.write(processed_template)
+        except IOError:
+            logging.error("Failed to write to file")
