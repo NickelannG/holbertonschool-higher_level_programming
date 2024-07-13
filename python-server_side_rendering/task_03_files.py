@@ -63,7 +63,7 @@ def load_json_data(filename, wanted_id=None):
         for row in rows:
             if wanted_id is None or row['id'] == wanted_id:
                 data.append(row)
-    except ValueError:
+    except (ValueError, KeyError):
         return []
 
     return data
@@ -77,7 +77,7 @@ def load_csv_data(filename, wanted_id=None):
                 row['id'] = int(row['id'])  # Convert ID to integer
                 if wanted_id is None or row['id'] == wanted_id:
                     data.append(row)
-    except ValueError:
+    except (ValueError, KeyError):
         return []
 
     return data
