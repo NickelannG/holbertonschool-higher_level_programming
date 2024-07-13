@@ -63,7 +63,7 @@ def load_json_data(filename, wanted_id=None):
         for row in rows:
             if wanted_id is None or row['id'] == wanted_id:
                 data.append(row)
-    except (ValueError, KeyError):
+    except (ValueError, KeyError, json.JSONDecodeError):
         return []
 
     return data
