@@ -46,7 +46,7 @@ def generate_invitations(template, attendees):
             value = ""
             to_replace = "{" + key + "}"
 
-        if key not in attendee:
+            if key not in attendee:
                 value = "N/A"
             else:
                 value = attendee[key]
@@ -54,7 +54,7 @@ def generate_invitations(template, attendees):
             if value == "" or value is None:
                 value = "N/A"
 
-        processed_template = processed_template.replace(to_replace, value)
+            processed_template = processed_template.replace(to_replace, value)
 
         # Increment index counter
         i += 1
