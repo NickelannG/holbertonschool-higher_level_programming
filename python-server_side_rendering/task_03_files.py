@@ -48,19 +48,19 @@ def load_json_data(filename, wanted_id = None):
 
     try:
         with open(filename, 'r') as f:
-            rows = json.load(f)
-        for row in rows:
-            key = row['id']
-
-            if (wanted_id is not None and key == wanted_id) or (wanted_id is None):
-                # Create dict anyway
-                product = {}
-                # write to dict
-                for key, values in row.items():
-                    product[key] = values
+            products = json.load(f)
+            
+        for product in products:
+            if (wanted_id is not None and product['id'] == wanted_id) or (wanted_id is None):
                 data.append(product)
 
-    except: ValueError("Unable to load data from file '{}'".format(filename))
+        if wanted_id and not any(product['id'] == wanted_id for product in products):
+            raise ValueError("Product with id {} not found in JSON source".format(wanted_id))
+
+    except FileNotFoundError:
+        raise ValueError("File '{}' not found".format(filename))
+    except ValueError as e:
+        raise ValueError("Unable to load data from file '{}': {}".format(filename, str(e)))
 
     return data
 
