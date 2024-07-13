@@ -56,13 +56,9 @@ def generate_invitations(template, attendees):
 
             processed_template = processed_template.replace(to_replace, value)
 
+        f = open("output_" + str(i) + ".txt", "a")
+        f.write(processed_template)
+        f.close()
+
         # Increment index counter
         i += 1
-
-        output_file = "output_{}.txt".format(i)
-        # Write to output file
-        try: 
-            with open(output_file, 'w') as f:
-                    f.write(processed_template)
-        except IOError:
-            logging.error("Failed to write to file")
