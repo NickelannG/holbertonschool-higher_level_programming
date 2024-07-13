@@ -62,8 +62,8 @@ def load_json_data(filename, wanted_id = None):
 
     return data
 
-def load_csv_data(filename, wanted_id = None):
-    """ Load JSON data from file and returns as dictionary """
+def load_json_data(filename, wanted_id=None):
+    """ Load JSON data from file and return as a list of dictionaries """
 
     data = []
 
@@ -71,13 +71,20 @@ def load_csv_data(filename, wanted_id = None):
         raise FileNotFoundError("Data file '{}' missing".format(filename))
 
     try:
-        with open(filename, 'r') as csvfile:
-            # using DictReader method to convert each row to a dictionary
-            for row in csv.DictReader(csvfile):
-                if (wanted_id is not None and row['id'] == wanted_id) or (wanted_id is None):
-                    data.append(row)
+        with open(filename, 'r') as f:
+            products = json.load(f)
+
+        found = False
+        for product in products:
+            if str(product['id']) == str(wanted_id):
+                data.append(product)
+                found = True
+
+        if wanted_id and not found:
+            raise ValueError("Product with id '{}' not found in JSON source".format(wanted_id))
+
     except ValueError as exc:
-        raise ValueError("Unable to load data from file '{}'".format(filename)) from exc
+        raise ValueError("Unable to load data from file '{}': {}".format(filename, str(exc)))
 
     return data
 
