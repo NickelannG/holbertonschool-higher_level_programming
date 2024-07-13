@@ -7,30 +7,34 @@
 </head>
 <body>
     {% include 'header.html' %}
-    <h1>Products</h1>
-    <div class ="main">
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <tbody>
-          {% for row in data %}
-          <tr>
-            <td>{{row["id"]}}</td>
-            <td>{{row["name"]}}</td>
-            <td>{{row["category"]}}</td>
-            <td>{{row["price"]}}</td>
-          </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-        {% if source not in ['json', 'csv', 'sql'] %}
-        <h2>Wrong source</h2>
+    <h1>Products table</h1>
+    <div class="main">
+        <h2>List of items</h2>
+        <table>
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Category</td>
+                    <td>Price</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{row["id"]}}</td>
+                    <td>{{row["name"]}}</td>
+                    <td>{{row["category"]}}</td>
+                    <td>{{row["price"]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if source not in ['json', 'csv'] %}
+        <h1>Wrong source</h1>
+        {% endif %}
+        {% if id and data|length == 0 %}
+        <h1>Product not found</h1>
         {% endif %}
     </div>
     {% include 'footer.html' %}
