@@ -35,33 +35,6 @@ def products():
 
     return render_template('product_display.html', data=data, source=source, id=id)
 
-def load_json_data(filename, wanted_id = None):
-    """ Load JSON data from file and returns as dictionary """
-
-    data = []
-
-    if not Path(filename).is_file():
-        raise FileNotFoundError("Data file '{}' missing".format(filename))
-
-    try:
-        with open(filename, 'r') as f:
-            rows = json.load(f)
-
-        for row in rows:
-            # Typecast!!!!!!!
-            key = str(row['id'])
-
-            if (wanted_id is not None and key == wanted_id) or (wanted_id is None):
-                product = {}
-                for k,v in row.items():
-                    product[k] = v
-                data.append(product)
-
-    except ValueError as exc:
-        raise ValueError("Unable to load data from file '{}'".format(filename)) from exc
-
-    return data
-
 def load_json_data(filename, wanted_id=None):
     """ Load JSON data from file and return as a list of dictionaries """
 
@@ -85,6 +58,25 @@ def load_json_data(filename, wanted_id=None):
 
     except ValueError as exc:
         raise ValueError("Unable to load data from file '{}': {}".format(filename, str(exc)))
+
+    return data
+
+def load_csv_data(filename, wanted_id = None):
+    """ Load JSON data from file and returns as dictionary """
+
+    data = []
+
+    if not Path(filename).is_file():
+        raise FileNotFoundError("Data file '{}' missing".format(filename))
+
+    try:
+        with open(filename, 'r') as csvfile:
+            # using DictReader method to convert each row to a dictionary
+            for row in csv.DictReader(csvfile):
+                if (wanted_id is not None and row['id'] == wanted_id) or (wanted_id is None):
+                    data.append(row)
+    except ValueError as exc:
+        raise ValueError("Unable to load data from file '{}'".format(filename)) from exc
 
     return data
 
