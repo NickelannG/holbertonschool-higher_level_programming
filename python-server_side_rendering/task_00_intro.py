@@ -37,22 +37,22 @@ def generate_invitations(template, attendees):
     # Process each attendee
     # count index of added attendees starting from 1
     i = 1
-    
-    # iterate through each dictionary in the attendees list
+
     for attendee in attendees:
-        i += 1
+        processed_template = template
+
+        # Replace placeholders in the template
         for key, value in attendee.items():
-            if value is not None:
-                # using the ** operator to unpack dictionary
-                processed_template = template.format(**attendee)
-            else:
-                # if any value in the dctionary is None - replace with N/A
-                attendee[key] = "N/A"
+            if value is None:
+                value = "N/A"
+            processed_template = processed_template.replace("{" + key + "}", str(value))
 
         output_file = "output_{}.txt".format(i)
-        # Write to output file
-        try: 
+        try:
             with open(output_file, 'w') as f:
-                    f.write(processed_template)
+                f.write(processed_template)
         except IOError:
-            logging.error("Failed to write to file")
+            logging.error("Failed to write to {}".format(output_file))
+
+        # Increment index counter
+        i += 1
