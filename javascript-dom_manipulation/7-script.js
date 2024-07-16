@@ -11,4 +11,5 @@ response
       newMovie.textContent = movie.title;
       moviesList.appendChild(newMovie);
     }
-  });
+  })
+  .catch(error => console.error('Error:', error));
